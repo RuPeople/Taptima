@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
   margin-top: auto;
+  position: relative;
 
   @media (min-width: 769px) {
     margin-left: 12px;
@@ -58,6 +59,39 @@ const Button = styled.button`
   
 `
 
+const Popover = styled.div`
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 15px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.2px;
+
+  color: #5DAAFF;
+  white-space: nowrap;
+  
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  
+  position: absolute;
+  top: -80px;
+  right: 0;
+  width: auto;
+  
+  & svg {
+    margin-left: 12px;
+  }
+  
+  @media(max-width: 576px){
+    display: none;
+  }
+`
 const NextButton = ({selectedDeliveryFrom, selectedDeliveryTo, selectedCurrency}) => {
     const navigator = useNavigate()
 
@@ -65,7 +99,6 @@ const NextButton = ({selectedDeliveryFrom, selectedDeliveryTo, selectedCurrency}
 
     const CheckFields = () => {
         if (!selectedDeliveryFrom || !selectedDeliveryTo || !selectedCurrency) {
-            alert("Сначала заполните все поля")
         }
         else {
             product.setSelectedDeliveryFrom(selectedDeliveryFrom)
@@ -77,6 +110,19 @@ const NextButton = ({selectedDeliveryFrom, selectedDeliveryTo, selectedCurrency}
 
     return (
         <Wrapper>
+            {
+                selectedDeliveryFrom && selectedDeliveryTo && selectedCurrency
+                ?
+                    <Popover>
+                        Теперь нажмите на кнопку “Далее”
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="22" viewBox="0 0 12 22" fill="none">
+                            <path d="M6 20V-3.57628e-07" stroke="#5DAAFF" strokeWidth="1.5"/>
+                            <path d="M11 15L6 20L1 15" stroke="#5DAAFF" strokeWidth="1.5"/>
+                        </svg>
+                    </Popover>
+                    :
+                    <></>
+            }
             <Button onClick={() => {CheckFields()}}>
                 Далее
                 <svg xmlns="http://www.w3.org/2000/svg" width="27" height="11" viewBox="0 0 27 11" fill="none">

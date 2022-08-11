@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import BasketItem from "./BasketItem";
 import Totals from "../Totals";
 import {Context} from "../../../index";
@@ -69,10 +69,84 @@ const Table = styled.table`
 const Col = styled.col`
 `
 
+const Popover = styled.div`
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 23px;
+  /* or 153% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2px;
+
+
+  color: #5DAAFF;
+  
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  
+  
+  position: absolute;
+  
+  top:-80px;
+  
+  &>div>svg {
+    height: 100%;
+    margin-right: 12px;
+  }
+  
+  & button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 12px;
+    
+    & svg {
+      margin: auto;
+      padding: 4px;
+    }
+  }
+  
+  @media(max-width: 1200px){
+    right: 0;
+  }
+  @media(min-width: 1201px){
+    left: 40%;
+  }
+  
+`
+
 const DesktopBasket = ({isCalculated}) => {
     const {product} = useContext(Context)
+    const [isPopoverOpen, setIsPopoverOpen] = useState(true)
     return (
         <Table>
+            {
+                isPopoverOpen
+                    ?
+                    <Popover>
+                        <button onClick={() => setIsPopoverOpen(false)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M1 1L10.5238 10.5238" stroke="#E45858" strokeWidth="1.5" strokeLinecap="round"/>
+                                <path d="M11 1.47607L1.47619 10.9999" stroke="#E45858" strokeWidth="1.5" strokeLinecap="round"/>
+                            </svg>
+                        </button>
+                        <div>
+                            Чтобы отредактировать  введенные ланные, просто нажмите на поле
+                        </div>
+                    </Popover>
+                    :
+                    <></>
+            }
             <colgroup>
                 <col span="2"></col>
                 <Col span="7"></Col>

@@ -10,6 +10,8 @@ const Wrapper = styled.div`
   justify-content: start;
   align-items: center;
   
+  position: relative;
+  
   @media (max-width: 576px) {
     padding-bottom: 20px;
   }
@@ -59,6 +61,8 @@ const Input = styled.input`
   }
 `
 const Button = styled.button`
+  position: relative;
+  
   background: #5DAAFF;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15);
   border-radius: 3px;
@@ -109,12 +113,63 @@ const Button = styled.button`
   }
 `
 
+const Popover = styled.div`
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 23px;
+  /* or 153% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2px;
+
+
+  color: #5DAAFF;
+  
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  
+  width: 470px;
+  
+  position: absolute;
+  left: 580px;
+  
+  &>div>svg {
+    height: 100%;
+    margin-right: 12px;
+  }
+  
+  & button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-left: 12px;
+    
+    & svg {
+      margin: auto;
+      padding: 4px;
+    }
+  }
+  @media (max-width: 1200px) {
+    display: none;
+  }
+`
 
 const SearchInput = () => {
     const {product} = useContext(Context)
 
     const [searchValue, setSearchValue] = useState("")
 
+    const [isPopoverOpen, setIsPopoverOpen] = useState(true)
     return (
             <Wrapper key="inputWrapper">
                 <Input as={motion.input}
@@ -140,6 +195,30 @@ const SearchInput = () => {
                 >
                     Поиск
                 </Button>
+                {
+                    isPopoverOpen
+                        ?
+                        <Popover>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="14" viewBox="0 0 30 14" fill="none">
+                                    <path d="M2 7L30 7" stroke="#5DAAFF" strokeWidth="1.5"/>
+                                    <path d="M9 13L2 7L9 1" stroke="#5DAAFF" strokeWidth="1.5"/>
+                                </svg>
+
+                            </div>
+                            <div>
+                                Введите название мебели в строку поиска или выберите мебель из предложенного списка
+                            </div>
+                            <button onClick={() => setIsPopoverOpen(false)}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M1 1L10.5238 10.5238" stroke="#E45858" strokeWidth="1.5" strokeLinecap="round"/>
+                                    <path d="M11 1.47607L1.47619 10.9999" stroke="#E45858" strokeWidth="1.5" strokeLinecap="round"/>
+                                </svg>
+                            </button>
+                        </Popover>
+                        :
+                        <></>
+                }
             </Wrapper>
     );
 };

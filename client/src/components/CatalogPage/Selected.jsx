@@ -323,6 +323,52 @@ const FormButton = styled.button`
   }
 `
 
+const Popover = styled.div`
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 15px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.2px;
+
+  color: #5DAAFF;
+  white-space: nowrap;
+  
+  padding: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  
+  position: absolute;
+  top: -0;
+  width: auto;
+  
+  & svg {
+    margin-left: 12px;
+  }
+
+  & button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-left: 12px;
+
+    & svg {
+      margin: auto;
+      padding: 4px;
+    }
+  }
+`
 const Selected = ({selectedProduct, unselect }) => {
 
     const navigator = useNavigate()
@@ -361,6 +407,7 @@ const Selected = ({selectedProduct, unselect }) => {
         unselect(product)
     }
 
+    const [isPopoverOpen, setIsPopoverOpen] = useState(true)
     return (
         <>
             {
@@ -441,6 +488,23 @@ const Selected = ({selectedProduct, unselect }) => {
                                 }}>Добавить</FormButton>
                             </ButtonsWrapper>
                         </>
+                        {isPopoverOpen
+                            ?
+                            <Popover>
+                                Теперь заполните поля для этого элемента
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="22" viewBox="0 0 12 22" fill="none">
+                                    <path d="M6 20V-3.57628e-07" stroke="#5DAAFF" strokeWidth="1.5"/>
+                                    <path d="M11 15L6 20L1 15" stroke="#5DAAFF" strokeWidth="1.5"/>
+                                </svg>
+                                <button onClick={() => setIsPopoverOpen(false)}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                        <path d="M1 1L10.5238 10.5238" stroke="#E45858" strokeWidth="1.5" strokeLinecap="round"/>
+                                        <path d="M11 1.47607L1.47619 10.9999" stroke="#E45858" strokeWidth="1.5" strokeLinecap="round"/>
+                                    </svg>
+                                </button>
+                            </Popover>
+                            :
+                            <></>}
                     </Wrapper>
                     :
                     <EmptySpan as={motion.div}
