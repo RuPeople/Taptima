@@ -1,6 +1,6 @@
 import {
     ADMIN_ROUTE,
-    AUTH_ROUTE, BASKET_ROUTE, CATALOG_ROUTE, CONTACT_ROUTE,
+    AUTH_ROUTE, BASKET_ROUTE, CATALOG_ROUTE, CONTACT_ROUTE, CREATED_REQUEST,
     LOGIN_ROUTE,
     MAIN_ROUTE,
 } from "./utils/consts";
@@ -10,6 +10,7 @@ import Admin from "./pages/Admin";
 import Contact from "./pages/Contact";
 import Catalog from "./pages/Catalog";
 import Basket from "./pages/Basket";
+import CreatedRequest from "./pages/CreatedRequest";
 
 export const authRoutes = [
     {
@@ -42,5 +43,9 @@ export const publicRoutes = [
     {
         path: LOGIN_ROUTE,
         Component: Auth
+    },
+    {
+        path: CREATED_REQUEST,
+        Component: CreatedRequest
     },
 ]

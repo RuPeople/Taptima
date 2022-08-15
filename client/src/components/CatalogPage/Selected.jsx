@@ -271,6 +271,8 @@ const Inputs = styled.div`
     &::-webkit-outer-spin-button {
       -webkit-appearance: none;
     }
+    -moz-appearance: textfield;
+    
     @media (max-width: 992px) {
       width: auto;
     }
@@ -377,10 +379,10 @@ const Selected = ({selectedProduct, unselect }) => {
 
     const ResetForm = () => {
         setSelectedProductCount(1)
-        setSelectedProductNetWeight(0)
-        setSelectedProductGrossWeight(0)
-        setSelectedProductVolume(0)
-        setSelectedProductPrice(0)
+        setSelectedProductNetWeight("")
+        setSelectedProductGrossWeight("")
+        setSelectedProductVolume("")
+        setSelectedProductPrice("")
     }
 
     const AddToBasket = () => {
@@ -398,10 +400,10 @@ const Selected = ({selectedProduct, unselect }) => {
     }
 
     const [selectedProductCount, setSelectedProductCount] = useState(1)
-    const [selectedProductNetWeight, setSelectedProductNetWeight] = useState(0)
-    const [selectedProductGrossWeight, setSelectedProductGrossWeight] = useState(0)
-    const [selectedProductVolume, setSelectedProductVolume] = useState(0)
-    const [selectedProductPrice, setSelectedProductPrice] = useState(0)
+    const [selectedProductNetWeight, setSelectedProductNetWeight] = useState("")
+    const [selectedProductGrossWeight, setSelectedProductGrossWeight] = useState("")
+    const [selectedProductVolume, setSelectedProductVolume] = useState("")
+    const [selectedProductPrice, setSelectedProductPrice] = useState("")
 
     const handleProductUnselect = (product) => {
         unselect(product)
