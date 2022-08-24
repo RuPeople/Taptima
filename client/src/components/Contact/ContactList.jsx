@@ -11,8 +11,7 @@ const Li = styled.li`
   margin-bottom: 32px;
 `
 const ContactItem = styled.span`
-  font-family: 'Roboto';
-  font-style: normal;
+  font-family: ${props => props.theme.fontFamily.primary};
   font-weight: 400;
   font-size: 23px;
   line-height: 23px;

@@ -3,21 +3,6 @@ import {Context} from "../../../index";
 import {observer} from "mobx-react-lite";
 import styled from "@emotion/styled";
 
-const Button = styled.button`
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  background: none;
-  border:none;
-  padding: 10px;
-  
-  @media (min-width: 769px){
-    display: none;
-  }
-  
-`
 
 const Burger = observer(() => {
 
@@ -27,13 +12,13 @@ const Burger = observer(() => {
 
     useEffect(() => {
         setOpen(product.offcanvasState)
-    },[])
+    }, [])
 
     return (
         <>
             {isOpen
                 ?
-                <Button onClick={e => {
+                <Button onClick={() => {
                     setOpen(false)
                     product.setOffcanvasState(false)
                 }}>
@@ -43,7 +28,7 @@ const Burger = observer(() => {
                     </svg>
                 </Button>
                 :
-                <Button onClick={e => {
+                <Button onClick={() => {
                     setOpen(true)
                     product.setOffcanvasState(true)
                 }}>
@@ -54,9 +39,31 @@ const Burger = observer(() => {
                     </svg>
                 </Button>
             }
-            
         </>
     );
 });
 
+const Button = styled.button`
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  background: none;
+  border:none;
+  padding: 10px;
+
+  @media ${props => props.theme.media.md}{
+    display: none;
+  }
+  @media ${props => props.theme.media.lg}{
+    display: none;
+  }
+  @media ${props => props.theme.media.xl}{
+    display: none;
+  }
+  @media ${props => props.theme.media.xxl}{
+    display: none;
+  }
+`
 export default Burger;

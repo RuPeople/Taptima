@@ -1,54 +1,14 @@
 import React, {useContext, useState} from 'react';
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import {NavLink} from "react-router-dom";
-import {CATALOG_ROUTE} from "../utils/consts";
 import styled from "@emotion/styled";
 import Calculation from "../components/Basket/Calculation";
 import EmptyBasket from "../components/Basket/EmptyBasket";
-import DesktopBasket from "../components/Basket/Desktop/DesktopBasket";
+import DesktopBasket from "../components/Basket/Desktop/DesktopBasket/DesktopBasket";
 import MobileBasket from "../components/Basket/Mobile/MobileBasket";
 import {motion} from "framer-motion";
 import ControlButtons from "../components/Basket/ControlButtons";
 
-const Wrapper = styled.section`
-  position: relative;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  
-  padding-bottom: 50px;
-`
-const H1 = styled.h1`
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 36px;
-  /* identical to box height, or 100% */
-
-  display: flex;
-  align-items: center;
-  letter-spacing: -1px;
-
-  color: #606F7A;
-
-  @media (max-width: 576px) {
-    font-size: 20px;
-    line-height: 20px;
-  }
-  @media (min-width: 577px) and (max-width: 768px) {
-    font-size: 24px;
-    line-height: 24px;
-  }
-  @media (min-width: 769px){
-    font-size: 36px;
-    line-height: 36px;
-  }
-`
 
 const Basket = observer(() => {
 
@@ -100,5 +60,41 @@ const Basket = observer(() => {
         </>
     );
 });
+
+const Wrapper = styled.section`
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  
+  padding-bottom: 50px;
+`
+const H1 = styled.h1`
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 36px;
+  /* identical to box height, or 100% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -1px;
+
+  color: #606F7A;
+
+  @media ${props => props.theme.media.xs} {
+    font-size: 20px;
+    line-height: 20px;
+  }
+  @media ${props => props.theme.media.sm} {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  
+  font-size: 36px;
+  line-height: 36px;
+`
 
 export default Basket;

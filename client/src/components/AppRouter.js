@@ -1,8 +1,7 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Route, Routes} from "react-router-dom";
-import {authRoutes, publicRoutes} from "../routes";
+import {publicRoutes} from "../routes";
 import Main from "../pages/Main";
-import {Context} from "../index";
 
 const AppRouter = () => {
     return (

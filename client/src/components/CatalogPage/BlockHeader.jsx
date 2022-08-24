@@ -2,9 +2,7 @@ import React from 'react';
 import styled from "@emotion/styled";
 import {motion} from "framer-motion";
 
-const H1 = styled.h1`
-  font-family: 'Open Sans';
-  font-style: normal;
+const H1 = styled(motion.h1)`
   font-weight: 400;
   font-size: 36px;
   line-height: 48px;
@@ -12,30 +10,40 @@ const H1 = styled.h1`
   color: #606F7A;
   width: 48%;
   margin-top: 0;
-  display: inline-block;
-  @media (max-width: 992px) {
+  
+  @media ${props => props.theme.media.xs}{
     display: none;
   }
-  @media (min-width: 993px) and  (max-width: 1200px) {
+  @media ${props => props.theme.media.sm}{
+    display: none;
+  }
+  @media ${props => props.theme.media.md}{
+    display: none;
+  }
+  @media ${props => props.theme.media.lg}{
+    display: none;
+  }
+  @media ${props => props.theme.media.xl} {
     font-weight: 400;
     font-size: 24px;
-    line-height: 36px;  
-    
+    line-height: 36px;
+    display: inline-block;
   }
-  @media (min-width: 1401px) {
+  @media ${props => props.theme.media.xxl} {
     font-weight: 400;
     font-size: 36px;
     line-height: 48px;
+    display: inline-block;
   }
 `
 
 const BlockHeader = ({text}) => {
     return (
-        <H1 as={motion.h1}
-            initial={{translateY:10, opacity: 0}}
-            animate={{translateY:0, opacity: 1}}
-            transition={{duration:0.5}}
-            exit={{translateY:10, opacity: 0}}
+        <H1
+            initial={{translateY: 10, opacity: 0}}
+            animate={{translateY: 0, opacity: 1}}
+            transition={{duration: 0.5}}
+            exit={{translateY: 10, opacity: 0}}
         >
             {text}
         </H1>

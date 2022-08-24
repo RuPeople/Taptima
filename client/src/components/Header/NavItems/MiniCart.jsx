@@ -5,11 +5,27 @@ import {Context} from "../../../index";
 import {observer} from "mobx-react-lite";
 import styled from "@emotion/styled";
 
+
+const MiniCart = observer(() => {
+    const {product} = useContext(Context)
+    return (
+        <>
+            {product.basket.length
+                ?
+                <Cart as={NavLink} to={BASKET_ROUTE}>
+                    Добавленная мебель (
+                    {product.basket.length}
+                    )
+                </Cart>
+                :
+                <></>
+            }
+        </>
+    );
+});
+
 const Cart = styled.a`
   margin-right: auto;
-
-  font-family: 'Open Sans';
-  font-style: normal;
   font-weight: 600;
   font-size: 17px;
   line-height: 17px;
@@ -39,23 +55,4 @@ const Cart = styled.a`
     padding: 14px 30px;
   }
 `
-
-const MiniCart = observer(() => {
-    const {product} = useContext(Context)
-    return (
-        <>
-            {product.basket.length
-                ?
-                <Cart as={NavLink} to={BASKET_ROUTE}>
-                    Добавленная мебель (
-                    {product.basket.length}
-                    )
-                </Cart>
-                :
-                <></>
-            }
-        </>
-    );
-});
-
 export default MiniCart;
